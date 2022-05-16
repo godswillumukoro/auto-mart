@@ -1,16 +1,17 @@
 {
-  "name": "auto-mart",
+  "name": "Auto Mart",
   "version": "1.0.0",
-  "description": "A ficticious online marketplace for automobiles.",
-  "main": "index.js",
+  "description": "Auto Mart is an online marketplace for automobiles, with Auto Mart users posting their cars for sale.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/godswillumukoro/auto-mart.git"
   },
-  "author": "",
+  "author": "Godswill Umukoro",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/godswillumukoro/auto-mart/issues"
