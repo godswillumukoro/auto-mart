@@ -1,9 +1,14 @@
 const express = require('express');
+const colors = require('colors');
 const dotenv = require('dotenv').config();
-const { errorHandler } = require('./middleware/errorMiddleware');
+const { errorHandler } = require('./middlewares/errorMiddleware');
+const connectDB = require('./config/db');
+
+// connects to MongoDB
+connectDB();
 
 const port = process.env.PORT || 5000;
-// importing router
+// imports router
 const carRoutes = require('./routes/carRoutes');
 
 const app = express();
