@@ -8,13 +8,15 @@ const connectDB = require('./config/db');
 connectDB();
 
 const port = process.env.PORT || 5000;
-// imports router
+// imports routers
 const carRoutes = require('./routes/carRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/cars', carRoutes);
+app.use('/api/users', userRoutes);
 // overrides the default error handler coming from express.js
 app.use(errorHandler);
 

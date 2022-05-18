@@ -6,7 +6,7 @@ const Car = require('../models/carModel');
 // @access Private
 const getCars = asyncHandler(async (req, res) => {
   const cars = await Car.find();
-  res.status(200).json({ cars });
+  res.status(200).json(cars);
 });
 
 // @desc Post car
@@ -14,12 +14,12 @@ const getCars = asyncHandler(async (req, res) => {
 // @access Private
 const postCar = asyncHandler(async (req, res) => {
   // setting the error handler
-  if (!req.body.name) {
+  if (req.body == null) {
     res.status(400);
-    throw new Error('Add a text field');
+    throw new Error('Add a name field');
   }
   console.log(req.body.name);
-  res.status(200).json({ message: 'Set cars' });
+  res.status(200).json(req.body);
 });
 
 // @desc Update car
