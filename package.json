@@ -2,7 +2,7 @@
   "name": "Auto Mart",
   "version": "1.0.0",
   "description": "Auto Mart is an online marketplace for automobiles, with Auto Mart users posting their cars for sale.",
-  "main": "server.js",
+  "main": "serve.js",
   "scripts": {
     "start": "node backend/server.js",
     "serve": "nodemon backend/server.js"
@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/godswillumukoro/auto-mart#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3"
   },
   "devDependencies": {

@@ -14,44 +14,26 @@ const getCars = asyncHandler(async (req, res) => {
 // @access Private
 const postCar = asyncHandler(async (req, res) => {
   // setting the error handler
-  if (!req.body.text) {
+  if (!req.body.name) {
     res.status(400);
-    throw new Error('Add a text field');
+    throw new Error('Add a name field');
   }
-  const car = await Car.create({
-    text: req.body.text,
-  });
   console.log(req.body.name);
-  res.status(200).json(car);
+  res.status(200).json(req.body);
 });
 
 // @desc Update car
 // @route PUT /api/cars/:id
 // @access Private
 const updateCar = asyncHandler(async (req, res) => {
-  const car = await Car.findById(req.params.id);
-  if (!car) {
-    req.status(400);
-    throw new Error('Car not Found');
-  }
-  const updatedCar = await Car.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json(updatedCar);
+  res.status(200).json({ message: `Update car ${req.params.id}` });
 });
 
 // @desc Delete car
 // @route DELETE /api/cars/:id
 // @access Private
 const deleteCar = asyncHandler(async (req, res) => {
-  const car = await Car.findById(req.params.id);
-  if (!car) {
-    req.status(400);
-    throw new Error('Car not found');
-  }
-  const deletedCar = await Car.findByIdAndDelete(req.params.id, req.body);
-
-  res.status(200).json({ id: deletedCar.id });
+  res.status(200).json({ message: `Delete car ${req.params.id}` });
 });
 
 module.exports = {
