@@ -14,7 +14,7 @@ const getCars = asyncHandler(async (req, res) => {
 // @access Private
 const postCar = asyncHandler(async (req, res) => {
   // setting the error handler
-  if (req.body == null) {
+  if (!req.body.name) {
     res.status(400);
     throw new Error('Add a name field');
   }
