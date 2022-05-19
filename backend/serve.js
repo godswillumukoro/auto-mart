@@ -13,7 +13,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/cars', require('./routes/carRoutes'));
+// importing routes
+app.use('/api/cars', require('./routes/carRoute'));
+app.use('/api/users', require('./routes/userRoute'));
 
 app.use(errorHandler);
 
