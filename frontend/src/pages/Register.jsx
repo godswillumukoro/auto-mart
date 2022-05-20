@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 function Register() {
@@ -26,18 +28,16 @@ function Register() {
     <>
       <section className="heading">
         <h1>
-          <span className="pdr-2">
+          <span className="pdr-4">
             <FaUser />
           </span>
           Register
         </h1>
-        <span className="leading-text">
-          Create an account and start posting cars today
-        </span>
+        <span className="leading-text">start posting your cars today</span>
       </section>
 
       <section className="form">
-        <form action="">
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
               type="text"
@@ -45,7 +45,7 @@ function Register() {
               id="name"
               name="name"
               value={name}
-              placeholder="Enter your fullname"
+              placeholder="Enter your name"
               onChange={onChange}
             />
           </div>
@@ -56,7 +56,7 @@ function Register() {
               id="email"
               name="email"
               value={email}
-              placeholder="Enter your email address"
+              placeholder="Enter your email"
               onChange={onChange}
             />
           </div>
@@ -67,7 +67,7 @@ function Register() {
               id="password"
               name="password"
               value={password}
-              placeholder="Enter your password"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>
@@ -78,7 +78,7 @@ function Register() {
               id="password2"
               name="password2"
               value={password2}
-              placeholder="Confirm your password"
+              placeholder="Confirm password"
               onChange={onChange}
             />
           </div>

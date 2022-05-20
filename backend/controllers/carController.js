@@ -16,11 +16,10 @@ const getCars = asyncHandler(async (req, res) => {
 // @route POST /api/cars
 // @access Private
 const postCar = asyncHandler(async (req, res) => {
-  // throw an error is there is no text sent
-  if (!req.body.text) {
+  if (!req.body.height) {
     res.status(400);
     // change express error handler to json response using custom middleware = errorHandler.js
-    throw new Error('Please add a text field');
+    throw new Error('Add a height');
   }
   // send to DB is text is sent
   const car = await Car.create({
@@ -28,6 +27,8 @@ const postCar = asyncHandler(async (req, res) => {
     user: req.user.id,
   });
   res.status(200).json(car);
+  console.log(req.body);
+  res.status(200).json({ message: 'Post - Car' });
 });
 
 // @desc Update car
@@ -60,6 +61,7 @@ const updateCar = asyncHandler(async (req, res) => {
   // update DB if id is found. => id/textData/options[create if doesn't already exist]
   const updatedCar = await Car.findByIdAndUpdate(id, req.body, { new: true });
   res.status(200).json(updatedCar);
+  res.status(200).json({ message: `Update - Car: ${req.params.id}` });
 });
 
 // @desc Delete car
@@ -91,6 +93,7 @@ const deleteCar = asyncHandler(async (req, res) => {
   // delete DB if id is found
   const deletedCar = await Car.findByIdAndDelete(id);
   res.status(200).json(deletedCar);
+  res.status(200).json({ message: `Delete - Car: ${req.params.id}` });
 });
 
 module.exports = {

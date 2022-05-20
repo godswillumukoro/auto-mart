@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt } from 'react-icons/fa';
 
 function Login() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    password2: '',
   });
 
-  const { name, email, password, password2 } = formData;
+  const { email, password } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -24,16 +28,16 @@ function Login() {
     <>
       <section className="heading">
         <h1>
-          <span className="pdr-2">
+          <span className="pdr-4">
             <FaSignInAlt />
           </span>
           Login
         </h1>
-        <span className="leading-text">View all cars and post some too</span>
+        <span className="leading-text">view all cars and post some too</span>
       </section>
 
       <section className="form">
-        <form action="">
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
               type="email"
@@ -41,7 +45,7 @@ function Login() {
               id="email"
               name="email"
               value={email}
-              placeholder="Enter your email address"
+              placeholder="Enter your email"
               onChange={onChange}
             />
           </div>
@@ -52,10 +56,11 @@ function Login() {
               id="password"
               name="password"
               value={password}
-              placeholder="Enter your password"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>
+
           <div className="form-group">
             <button type="submit" className="btn btn-block">
               Login
