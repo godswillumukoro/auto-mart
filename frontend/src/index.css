@@ -191,6 +191,15 @@ h3 {
   animation: spin 1.2s linear infinite;
 }
 
+.pdr-2 {
+  padding-right: 1rem;
+}
+
+span.leading-text {
+  font-size: 1.15rem;
+  font-weight: lighter;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
