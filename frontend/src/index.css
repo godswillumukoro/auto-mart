@@ -76,7 +76,7 @@ h3 {
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 50px;
   padding: 0 20px;
@@ -191,6 +191,19 @@ h3 {
   animation: spin 1.2s linear infinite;
 }
 
+span.leading-text {
+  font-size: 1.15rem;
+  font-weight: normal;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.pdr-4 {
+  margin-right: 10px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -204,10 +217,6 @@ h3 {
 @media (max-width: 600px) {
   .form {
     width: 90%;
-  }
-
-  .heading h1 {
-    font-size: 2rem;
   }
 
   .heading p {

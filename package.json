@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/serve.js",
     "be": "nodemon backend/serve.js",
-    "fe": "npm start --prefix frontend"
+    "fe": "DISABLE_ESLINT_PLUGIN=true npm start --prefix frontend",
+    "dev": "concurrently \"npm run be\" \"DISABLE_ESLINT_PLUGIN=true npm run fe\""
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "mongoose": "^6.3.3"
   },
   "devDependencies": {
+    "concurrently": "^7.2.0",
     "nodemon": "^2.0.16"
   }
 }
