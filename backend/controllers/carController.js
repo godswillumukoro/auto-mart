@@ -8,6 +8,14 @@ const User = require('../models/userModel');
 // @route GET /api/cars
 // @access Private
 const getCars = asyncHandler(async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '1800');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   const cars = await Car.find({ user: req.user.id });
   res.status(200).json(cars);
 });
@@ -16,10 +24,18 @@ const getCars = asyncHandler(async (req, res) => {
 // @route POST /api/cars
 // @access Private
 const postCar = asyncHandler(async (req, res) => {
-  if (!req.body.height) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '1800');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
+  if (!req.body.text) {
     res.status(400);
     // change express error handler to json response using custom middleware = errorHandler.js
-    throw new Error('Add a height');
+    throw new Error('Add a text');
   }
   // send to DB is text is sent
   const car = await Car.create({
@@ -28,13 +44,20 @@ const postCar = asyncHandler(async (req, res) => {
   });
   res.status(200).json(car);
   console.log(req.body);
-  res.status(200).json({ message: 'Post - Car' });
 });
 
 // @desc Update car
 // @route PUT /api/cars/:id
 // @access Private
 const updateCar = asyncHandler(async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '1800');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   // get the unique id
   const { id } = req.params;
   const car = await Car.findById(id);
@@ -45,15 +68,14 @@ const updateCar = asyncHandler(async (req, res) => {
   }
 
   // check for user from the User model
-  const user = await User.findById(req.user.id);
-  if (!user) {
+  if (!req.user) {
     // throw error if user is not found
     res.status(401);
     throw new Error('User not found');
   }
 
   // check logged in user matches car user
-  if (car.user.toString() !== user.id) {
+  if (car.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not authorized');
   }
@@ -68,6 +90,14 @@ const updateCar = asyncHandler(async (req, res) => {
 // @route DELETE /api/cars/:id
 // @access Private
 const deleteCar = asyncHandler(async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '1800');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   // get unique id
   const { id } = req.params;
   const car = await Car.findById(id);
@@ -78,15 +108,14 @@ const deleteCar = asyncHandler(async (req, res) => {
   }
 
   // check for user from the User model
-  const user = await User.findById(req.user.id);
-  if (!user) {
+  if (!req.user) {
     // throw error if user is not found
     res.status(401);
     throw new Error('User not found');
   }
 
   // check logged in user matches car user
-  if (car.user.toString() !== user.id) {
+  if (car.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not authorized');
   }
